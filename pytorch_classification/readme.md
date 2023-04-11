@@ -34,3 +34,6 @@ python test_caller.py
 
 ## Output
 The results are generated in the 'results' directory in the format 'results/<modle_name>/<time_stamp>/'. This directory contains the tensorboard logs, model weights, GradCam images, Prediction images, training and validation dictionary pickle objects containing every metric information per epoch and an 'epoch_csv' directory containing the train and validation CSV files generated for each training epoch having columns of a file path, probabilities and true label.
+
+## Reference
+More details can also be found [here](https://punndeeplearningblog.com/development/pytorch-skeleton-code-for-binary-and-multi-class-classification/).
