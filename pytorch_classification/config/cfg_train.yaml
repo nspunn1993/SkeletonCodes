@@ -1,0 +1,39 @@
+visualize:
+    vis: True # Flag to enable or disable visualizing random images
+    path: 'figures/dataset/' # Path to save the figure samples
+
+models: # Training or testing models
+    model_name: "resnet18" # 'resnet18', 'resnet50', 'densenet161','densenet121'
+    out_neurons: 3 # Output neurons
+    fr_layer: 6 # 0 means no freeze. It can be a string or integer. String must correspond to block with numbers e.g. in densenet, denseblock4 - would make layers till denseblock4 trainable and rest would freeze 
+    pretrained: False # load the pretrained weights
+
+log: # Logger to keep track of the execution progress
+    mode: 'a'
+    path: 'logs/RunningLogs.txt'
+
+train:
+    tr_path: ['dataset/train.csv'] # training csv files path
+    vd_path: ['dataset/test.csv'] # validation csv files path
+    epochs: 180 
+    batch_size: 32
+    train_continue: False # flag to continue training
+    version: '' # mandatory if required to continue training
+    patience: 8 # early stopping patience value
+    weights_dir: 'weights/' # directory to store the weights
+    trlogs_dir: 'logs_training/' # directory to store the training logs in csv
+    lr: 0.01 # initial training learning rate. Here Adam is used
+    lr_decay_factor: 0.1 # factor to reduce the learning rate after validation loss plateaus
+    lr_pat: 3 # patience value of ReduceLROnPlateau scheduler
+    optimizer: 'RAdam' # Optimizer selection
+    scheduler: 'ReduceLROnPlateau' # Scheduler selection
+    loss: 'WCE' # Loss function
+    weight_decay: 0 # Add weight decay
+    device: 'cuda:0'
+    save_path: 'results/' 
+
+data:
+    transform: # Transformation Parameters for images
+        height: 256
+        width: 256
+        normalize: False

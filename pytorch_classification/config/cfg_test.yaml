@@ -1,0 +1,25 @@
+visualize:
+    vis: True
+    path: 'figures/dataset/' # Path to save the figure samples
+
+models: # testing models
+    model_name: "resnet18" # 'resnet18', 'resnet50', 'densenet161','densenet121'
+    out_neurons: 3 # Output neurons
+    model_weights: 'results/resnet18/2023-04-11_02-46-41/weights.pth' # Traubed weights of the model
+
+log: # Logger to keep track of the execution progress
+    mode: 'a'
+    path: 'logs/RunningLogs.txt'
+
+test:
+    ts_path: ['dataset/test.csv'] # test csv files path
+    device: 'cuda:0'
+    batch_size: 32
+    save_path: 'results/resnet18/2023-04-02_15-08-51/' # Path to store the results of test run
+    interpret_layer: 'model.layer4[-1]' # the target layer on which we want to view the gradcams, e.g. model.layer4[-1] for resnet model
+
+data:
+    transform: # Transformation Parameters for images
+        height: 256
+        width: 256
+        normalize: False
