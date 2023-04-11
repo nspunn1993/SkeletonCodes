@@ -1,2 +1,2 @@
 # Skeleton Code Repository
-This repository provides the complete skeleton code to run and configure for any classification task (binary and multi-class).
+This repository provides the complete pipeline to run and configure for different machine learning / deep learning usecases.

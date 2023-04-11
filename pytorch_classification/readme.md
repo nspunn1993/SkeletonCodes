@@ -1,36 +1,36 @@
-# Pytorch Skeleton Code for Binary and Multi-class classification
+# Pytorch Skeleton Code for Binary and Multi-class Classification
 This repository provides the complete skeleton code to run and configure for any classification task (binary and multi-class).
 
 ## Setup
-- Begin by installing the requirement packages listed in requirements.txt
+- Begin by installing the required packages listed in requirements.txt
 
 ## Training
 - train_caller.py = Loads the train config file, get the train_params, model_params, vis_params -> Calls the train method in utils.train.py file
-- train.py = Loads the training, visualization, transformation and model parameters -> Form the model by calling models.models.py -> Configures the data loader by calling data.databuilder.py with preprocessing defined using transformation in utils.transformer.py -> Sets the class weights -> Visualizes the training and validation samples (histograms, imgaes; with and without the preprocessing) -> Define the directories, model version and create/check paths -> Define the optimizer and scheduler -> Define the loss function using utils.loss.py -> Initiate the training epochs -> Record training and validation evaluation in the form of dictionary obtained using utils.eval.py and also Tensorboard summary writer is created that records train and valid loss over each epoch. -> Saves the weights of the model that obtained best results over the epochs.
+- train.py = Loads the training, visualization, transformation and model parameters -> Form the model by calling models.models.py -> Configures the data loader by calling data.databuilder.py with preprocessing defined using transformation in utils.transformer.py -> Sets the class weights -> Visualizes the training and validation samples (histograms, images; with and without the preprocessing) -> Define the directories, model version and create/check paths -> Define the optimizer and scheduler -> Define the loss function using utils.loss.py -> Initiate the training epochs -> Record training and validation evaluation in the form of dictionary obtained using utils.eval.py and also Tensorboard summary writer is created that records train and valid loss over each epoch. -> Saves the weights of the model that obtained the best results over the epochs.
 
 ```
 python train_caller.py
 ```
 ## Testing
 - test_caller.py = Loads the test config file, get the test_params, model_params, vis_params -> Calls the test method in utils.test.py file
-- test.py = Loads the testing, visualization, transformation and model parameters -> Form the model by calling models.models.py -> Configures the data loader by calling data.databuilder.py with preprocessing defined using transformation in utils.transformer.py -> Visualizes the test samples (histograms, imgaes; with and without the preprocessing) -> Record test evaluation in the form of dictionary obtained using utils.eval.py -> Visualize the predictions on random samples. -> Visualize with gradcams on the random samples by using utils.interpret.py
+- test.py = Loads the testing, visualization, transformation and model parameters -> Form the model by calling models.models.py -> Configures the data loader by calling data.databuilder.py with preprocessing defined using transformation in utils.transformer.py -> Visualizes the test samples (histograms, images; with and without the preprocessing) -> Record test evaluation in the form of dictionary obtained using utils.eval.py -> Visualize the predictions on random samples. -> Visualize with Gradcams on the random samples by using utils.interpret.py
 ```
 python test_caller.py
 ```
 ## File details
 - configs.cfg_test.yaml and configs.cfg_train.yaml contains the necessary variables to configure data, model, directory to save results, and other environment setup
 - data.databuilder.py = Defines the preprocessing pipeline by using utils.transformer.py and provides the functionality to return data loader
-- data.dataset.py = Called by data.databuilder.py that reads csv file containig columns of file path and labels
+- data.dataset.py = Called by data.databuilder.py that reads csv file containing columns of the file path and labels
 - data.transformer.py = Can add transformations based on the requirement for train, validation and test.
-- models.models.py = Here we can define our model. By default there are multiple state-of-the-art classification models are available.
-- utils.eval.py = Accepts the true labels and predicted probabilites to compute the performance matrics. In case of binary we use single neuron so to generate threshold for classification we maximize the harmonic mean of two vectors either by using PR curve or ROC curve
+- models.models.py = Here we can define our model. By default, there are multiple state-of-the-art classification models are available.
+- utils.eval.py = Accepts the true labels and predicted probabilities to compute the performance metrics. In case of the binary we use a single neuron so to generate a threshold for classification, we maximize the harmonic mean of two vectors either by using the PR curve or ROC curve
 - utils.interpret.py = Has functionality to interpret the results generated by the model.
-- utils.logger.py = Just addes in case we want to create separate logs
-- utils.loss.py = Contains the functions for different loss functions (weighted/non-weighted, binary/mulit-class)
+- utils.logger.py = Just add in case we want to create separate logs
+- utils.loss.py = Contains the functions for different loss functions (weighted/non-weighted, binary/multi-class)
 - utils.optimizers.py = Defines the optimizer and scheduler for training
 - utils.test.py = Contains the main logic to test the trained model.
 - utils.train.py = Contains the main logic to train the model.
 - utils.visualize.py = Has the functionality to visualize the random samples and histograms from the cohort.
 
 ## Output
-The results are generated in the 'results' directory in the format as 'results/<modle_name>/<time_stamp>/'. This directory contains the tensorboard logs, model weights, GradCam images, Prediction images, training and validation dictionary pickle objects containing each and every metric information per epoch and an 'epoch_csv' directory containing the train and validation csv files generated for each training epoch having columns of file path, probabilities and true label.
+The results are generated in the 'results' directory in the format 'results/<modle_name>/<time_stamp>/'. This directory contains the tensorboard logs, model weights, GradCam images, Prediction images, training and validation dictionary pickle objects containing every metric information per epoch and an 'epoch_csv' directory containing the train and validation CSV files generated for each training epoch having columns of a file path, probabilities and true label.
